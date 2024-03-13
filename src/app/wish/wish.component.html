@@ -1,0 +1,20 @@
+<div class="container wishform">
+    <add-wish-form 
+        (addWish)="addNewWish($event)"
+    ></add-wish-form>
+
+    <div class="row mt-3">
+        <wish-filter 
+            [(filter)]="filter"
+        ></wish-filter>
+    </div>
+
+    <div class="mt-3">
+        <div class="col-sm-4">
+            <wish-list 
+                [wishes]="items.filter(filter)"
+            >
+        </wish-list>
+        </div>
+    </div>
+</div>    

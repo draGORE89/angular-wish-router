@@ -1,0 +1,17 @@
+<!-- Assign classes using [ngClass]; pass string for class or js expression (bind variable to a property called ngClass) -->
+
+<li class="d-flex justify-content-between">
+    <div class="form-check">
+        <label class="form-check-label" [ngClass]="applyCssClasses">
+            <input 
+            type="checkbox" 
+            class="checkbox" 
+            [checked]="wish.isComplete" 
+            (click)="toggleWish()"
+            >{{wish.wishText}}
+        </label>
+    </div>
+    <div>
+        <button type="button" class="btn-close" (click)="removeWish()"></button>
+    </div>
+</li>

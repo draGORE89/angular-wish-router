@@ -1,0 +1,24 @@
+{
+  "wishes": [
+    {
+      "id": "1",
+      "wishText": "To Learn Angular!",
+      "isComplete": true
+    },
+    {
+      "id": "2",
+      "wishText": "Get Coffee",
+      "isComplete": false
+    },
+    {
+      "id": "3",
+      "wishText": "Find grass that cuts itself",
+      "isComplete": true
+    },
+    {
+      "id": "4",
+      "wishText": "asdasd",
+      "isComplete": false
+    }
+  ]
+}
