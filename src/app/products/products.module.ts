@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductslistComponent } from './productslist/productslist.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { RouterModule } from '@angular/router';
+import { ProductsRoutingModule } from './products-routing.module';
 
 
 
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ProductsRoutingModule
   ]
 })
 export class ProductsModule { }

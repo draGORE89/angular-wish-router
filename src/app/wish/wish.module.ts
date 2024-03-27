@@ -9,6 +9,7 @@ import { WishListItemComponent } from './../wish/wish-list-item/wish-list-item.c
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { WishComponent } from './wish.component';
+import { WishRoutingModule } from './wish-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import { WishComponent } from './wish.component';
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
-    FormsModule
+    // HttpClientModule,
+    FormsModule,
+    WishRoutingModule
   ],
   exports: [
     // WishListComponent,

@@ -8,17 +8,43 @@
     {
       "id": "2",
       "wishText": "Get Coffee",
-      "isComplete": false
-    },
-    {
-      "id": "3",
-      "wishText": "Find grass that cuts itself",
       "isComplete": true
     },
     {
-      "id": "4",
-      "wishText": "asdasd",
-      "isComplete": false
+      "id": "3",
+      "wishText": "Find Grass That Cuts Itself",
+      "isComplete": true
+    }
+  ],
+  "wishes-info": [
+    {
+      "id": "1",
+      "wishInfo": "Additional info for wish 1"
+    },
+    {
+      "id": "2",
+      "wishInfo": "Additional info for wish 2"
+    },
+    {
+      "id": "3",
+      "wishInfo": "Additional info for wish 3"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Guitar",
+      "price": "1000"
+    },
+    {
+      "id": "2",
+      "name": "Piano",
+      "price": "5000"
+    },
+    {
+      "id": "3",
+      "name": "Drums",
+      "price": "1200"
     }
   ]
 }

@@ -22,17 +22,24 @@ export class WishComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.loadWishes()
+    this.loadWishes();
+    this.loadWishesInfo();
   };
 
   loadWishes() {
-    this.wishService.getWishes().subscribe((data: any) => {
-      this.items = data
-    },
-      (error: any) => { // catch error
-        alert(error.message)
-      }
-    )
+    this.wishService.getWishes()
+      .subscribe({
+        next: (response) => this.items = response,
+        error: (error) => alert(error.message) // catch error
+      })
+  }
+
+  loadWishesInfo() {
+    this.wishService.getWishesInfo()
+      .subscribe({
+        next: (response) => console.log(response),
+        error: (error) => alert(error.message) // catch error
+      })
   }
 
   deleteWish(wishId: string) {
@@ -43,7 +50,7 @@ export class WishComponent implements OnInit {
           this.loadWishes();
         },
         error: (error) => {
-          console.error('Error adding wish:', error);
+          console.error('Error deleting wish:', error);
         }
       })
   }
@@ -56,7 +63,7 @@ export class WishComponent implements OnInit {
         console.log(response);
       },
       error: (error) => {
-        console.error('Error adding wish:', error);
+        console.error('Error updating wish:', error);
       }
     })
   }

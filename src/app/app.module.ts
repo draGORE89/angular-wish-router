@@ -9,20 +9,22 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ContactModule } from './contact/contact.module';
 import { ProductsModule } from './products/products.module';
 import { WishModule } from './wish/wish.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstComponent,
     SecondComponent,
-    NotFoundComponent
+    // NotFoundComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    ContactModule,
-    ProductsModule,
-    WishModule
+    // ContactModule,
+    // ProductsModule,
+    // WishModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { WishItem } from 'src/shared/models/wishItem';
 import { catchError } from 'rxjs/operators'; // <-- interface for catching errors
 import { throwError, Observable } from 'rxjs';
+import { BASE_URL } from 'src/shared/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -29,25 +30,32 @@ export class WishService {
       }
     })
     // to handle errors we pipe in a process to our request, which is going to handle the error
-    return this.httpClient.get('http://localhost:3000/wishes').pipe(catchError(this.handleError))
+    return this.httpClient.get(BASE_URL + '/wishes').pipe(catchError(this.handleError))
+  }
+
+  getWishesInfo(): Observable<any> {
+    let options = this.getStandardOptions()
+
+    return this.httpClient.get(BASE_URL + '/wishes-info', options).pipe(catchError(this.handleError))
   }
 
   addWish(wish: WishItem): Observable<any> {
     let options = this.getStandardOptions()
     // options.headers.set('Authorization', 'value-needed-for-authorization')
 
-    return this.httpClient.post('http://localhost:3000/wishes', wish, options).pipe(catchError(this.handleError))
+    return this.httpClient.post(BASE_URL + '/wishes', wish, options).pipe(catchError(this.handleError))
   }
 
   toggleWish(wishId: string, wish: WishItem): Observable<any> {
     let options = this.getStandardOptions()
-    const url = `http://localhost:3000/wishes/${wishId}`
+    const url = BASE_URL + '/wishes/' + wishId
     return this.httpClient.put(url, wish, options).pipe(catchError(this.handleError))
   }
 
   deleteWish(wishId: string): Observable<any> {
     let options = this.getStandardOptions()
-    return this.httpClient.delete(`http://localhost:3000/wishes/${wishId}`, options).pipe(catchError(this.handleError))
+    const url = BASE_URL + '/wishes/' + wishId
+    return this.httpClient.delete(url, options).pipe(catchError(this.handleError))
   }
 
   // HttpErrorResponse is a class coming from http
