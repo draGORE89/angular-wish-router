@@ -1,23 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core';
 import { WishItem } from 'src/shared/models/wishItem';
 import { EventService } from './../../shared/services/eventService'
 import { WishService } from './wish.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-wish',
   templateUrl: './wish.component.html',
   styleUrls: ['./wish.component.css']
 })
-export class WishComponent implements OnInit {
+export class WishComponent implements OnInit, OnDestroy {
   title: string = 'wishlist'
   items: WishItem[] = [];
+  filter: any = (item: WishItem) => item
+
+  removeWishSubscription!: Subscription
+  toggleWishSubscription!: Subscription
+  destroyRef = inject(DestroyRef)
+
   constructor(events: EventService, private wishService: WishService) {
-    events.listen('removeWish', (wish: any) => {
+    this.removeWishSubscription = events.listen('removeWish', (wish: any) => {
       let wishId = wish.id
       this.deleteWish(wishId)
     })
-    events.listen('toggleWish', (wish: WishItem) => {
-      console.log(wish)
+    this.toggleWishSubscription = events.listen('toggleWish', (wish: WishItem) => {
       this.toggleWish(wish)
     })
   }
@@ -28,6 +35,7 @@ export class WishComponent implements OnInit {
 
   loadWishes() {
     this.wishService.getWishes()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => this.items = response,
         error: (error) => alert(error.message) // catch error
@@ -36,6 +44,7 @@ export class WishComponent implements OnInit {
 
   loadWishesInfo() {
     this.wishService.getWishesInfo()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => console.log(response),
         error: (error) => alert(error.message) // catch error
@@ -44,6 +53,7 @@ export class WishComponent implements OnInit {
 
   deleteWish(wishId: string) {
     this.wishService.deleteWish(wishId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
           console.log(response);
@@ -58,14 +68,15 @@ export class WishComponent implements OnInit {
   toggleWish(wish: WishItem) {
     let id = wish.id
     this.wishService.toggleWish(id, wish)
-    .subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        console.error('Error updating wish:', error);
-      }
-    })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (error) => {
+          console.error('Error updating wish:', error);
+        }
+      })
   }
 
   addNewWish(text: string) {
@@ -81,7 +92,9 @@ export class WishComponent implements OnInit {
   }
 
   private addWishToService(wish: WishItem): void {
-    this.wishService.addWish(wish).subscribe({
+    this.wishService.addWish(wish)
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
       next: (response) => {
         console.log(response);
         this.loadWishes();
@@ -91,5 +104,9 @@ export class WishComponent implements OnInit {
       }
     });
   }
-  filter: any;
+
+  ngOnDestroy(): void {
+    this.removeWishSubscription.unsubscribe()
+    this.toggleWishSubscription.unsubscribe()
+  }
 }

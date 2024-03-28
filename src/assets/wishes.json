@@ -7,12 +7,7 @@
     },
     {
       "id": "2",
-      "wishText": "Get Coffee",
-      "isComplete": true
-    },
-    {
-      "id": "3",
-      "wishText": "Find Grass That Cuts Itself",
+      "wishText": "Get Coffee!",
       "isComplete": true
     }
   ],

@@ -15,7 +15,7 @@ const filters = [
 })
 export class WishFilterComponent implements OnInit {
   // filter is now 2-way bound. To tell angular that Input and Output are related, we add 'Change' in the output name
-  @Input() filter: any
+  @Input() filter: any;
   @Output() filterChange = new EventEmitter<any>();
   listFilter: string = '0';
 

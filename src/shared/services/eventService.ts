@@ -11,11 +11,11 @@ export class EventService {
     private subject = new Subject(); // allows us to pass messages/events from our observable to the subscribers
 
     emit(eventName: string, payload: any) {
-        this.subject.next({eventName, payload});
+        return this.subject.next({eventName, payload});
     }
 
     listen(eventName: string, callback: (event: any) => void) {
-        this.subject.asObservable().subscribe((nextObj: any) => {
+        return this.subject.asObservable().subscribe((nextObj: any) => {
             if (eventName === nextObj.eventName) {
                 callback(nextObj.payload)
             }
