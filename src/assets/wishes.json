@@ -9,6 +9,11 @@
       "id": "2",
       "wishText": "Get Coffee!",
       "isComplete": true
+    },
+    {
+      "id": "3",
+      "wishText": "Sleep!",
+      "isComplete": false
     }
   ],
   "wishes-info": [
