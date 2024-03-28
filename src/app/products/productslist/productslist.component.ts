@@ -1,25 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductsService } from '../products.service';
+import { Observable, map } from 'rxjs';
+
 
 @Component({
   selector: 'app-productslist',
   templateUrl: './productslist.component.html',
   styleUrls: ['./productslist.component.css']
 })
-export class ProductslistComponent implements OnInit {
-  products: any[] = []
+export class ProductslistComponent {
+  products$: Observable<any>
 
-  constructor(private productService: ProductsService) {}
-  
-  ngOnInit(): void {
-    this.loadProducts()
-  }
-
-  loadProducts() {
-    this.productService.getAllProducts()
-      .subscribe({
-        next: (response) => this.products = response,
-        error: (error) => alert(error.message)
-      })
+  constructor(private productService: ProductsService) {
+    this.products$ = this.productService.getAllProducts()
+      .pipe(map((products) => products.map((product: any) => {
+        return {
+          id: product.id,
+          name: product.name
+        }
+      })))
   }
 }

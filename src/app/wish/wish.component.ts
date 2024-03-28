@@ -13,21 +13,25 @@ import { Subscription } from 'rxjs';
 export class WishComponent implements OnInit, OnDestroy {
   title: string = 'wishlist'
   items: WishItem[] = [];
-  filter: any = (item: WishItem) => item
+  filter: any;
 
-  removeWishSubscription!: Subscription
-  toggleWishSubscription!: Subscription
+  removeWishSubscription: Subscription
+  toggleWishSubscription: Subscription
   destroyRef = inject(DestroyRef)
 
   constructor(events: EventService, private wishService: WishService) {
+    this.filter = (item: WishItem) => item
+
     this.removeWishSubscription = events.listen('removeWish', (wish: any) => {
       let wishId = wish.id
       this.deleteWish(wishId)
     })
+
     this.toggleWishSubscription = events.listen('toggleWish', (wish: WishItem) => {
       this.toggleWish(wish)
     })
   }
+
   ngOnInit(): void {
     this.loadWishes();
     this.loadWishesInfo();

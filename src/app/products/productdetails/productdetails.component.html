@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div *ngIf="product$ | async as product" class="row">
         <h3>{{product.name}} <small>{{product.price}} BGN</small></h3>
     </div>
 </div>
