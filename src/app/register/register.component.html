@@ -1,0 +1,45 @@
+<form 
+    [formGroup]="registerForm"
+    (ngSubmit)="submitForm($event)"
+    >
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input 
+            type="text" 
+            class="form-control"
+            formControlName="username"
+            >
+            <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.dirty || registerForm.get('username')?.touched">
+                <small *ngIf="registerForm.get('username')?.hasError('required')" class="text-danger">This field is required</small>
+            </div> 
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input 
+            type="text" 
+            class="form-control"
+            formControlName="email"
+            >
+            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.dirty || registerForm.get('email')?.touched">
+                <small *ngIf="registerForm.get('email')?.hasError('required')" class="text-danger">This field is required</small>
+            </div> 
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input 
+            type="password" 
+            class="form-control"
+            formControlName="password"
+            >
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.dirty || registerForm.get('password')?.touched">
+                <small *ngIf="registerForm.get('password')?.hasError('required')" class="text-danger">This field is required</small>
+            </div> 
+    </div>
+
+    <div class="mb-3" style="display: flex; gap: 10px">
+        <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">Register</button>
+    </div>
+    
+</form>

@@ -1,0 +1,40 @@
+<form
+    *ngIf="!authService.currentUserSig()"
+    [formGroup]="loginForm"
+    (ngSubmit)="submitForm($event)"
+    >
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input 
+            type="text" 
+            class="form-control"
+            formControlName="email"
+            >
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.dirty || loginForm.get('email')?.touched">
+                <small *ngIf="loginForm.get('email')?.hasError('required')" class="text-danger">This field is required</small>
+            </div>    
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input 
+            type="password" 
+            class="form-control"
+            formControlName="password"
+            >
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.dirty || loginForm.get('password')?.touched">
+                <small *ngIf="loginForm.get('password')?.hasError('required')" class="text-danger">This field is required</small>
+            </div>    
+    </div>
+
+    <div class="mb-3" style="display: flex; gap: 10px">
+        <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+        <button class="btn btn-primary" (click)="goToRegister($event)">Register</button>
+    </div>
+    
+</form>
+
+<div *ngIf="authService.currentUserSig()" class="container">
+    Logged User: {{authService.currentUserSig()?.username}}
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
+</div>
