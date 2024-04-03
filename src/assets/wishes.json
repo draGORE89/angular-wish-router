@@ -12,12 +12,7 @@
     },
     {
       "id": "3",
-      "wishText": "Sleep!",
-      "isComplete": false
-    },
-    {
-      "id": "4",
-      "wishText": "add more",
+      "wishText": "Get Sleep!",
       "isComplete": false
     }
   ],
