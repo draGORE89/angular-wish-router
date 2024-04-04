@@ -16,19 +16,15 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router) {}
   ngOnInit(): void {
-    const token = localStorage.getItem('token') ?? ''
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': token ? `Token ${token}` : ''
+      this.http.get<{user: UserInterface}>('https://api.realworld.io/api/user')
+      .subscribe({
+        next: response => {
+          this.authService.currentUserSig.set(response.user)
+        },
+        error: () => {
+          this.authService.currentUserSig.set(null)
+        }
       })
-    }
-    if (token) {
-      this.http.get<{user: UserInterface}>('https://api.realworld.io/api/user', options)
-      .subscribe(response => {
-        this.authService.currentUserSig.set(response.user)
-      })
-    }
   }
 
   goToContact($event: Event) {

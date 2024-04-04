@@ -31,12 +31,12 @@ export class LoginComponent {
       })
   }
 
-  goToRegister($event: Event) {
+  goToRegister($event: Event): void {
     $event.preventDefault()
     this.router.navigateByUrl('/register')
   }
 
-  logout() {
+  logout(): void {
     console.log('logout')
     localStorage.setItem('token', '')
     this.authService.currentUserSig.set(null)

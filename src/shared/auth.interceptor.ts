@@ -8,13 +8,12 @@ import { Observable } from "rxjs";
 export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler):any {
         const token = localStorage.getItem('token') ?? ''
-        if (token) {
+        if (token && req.url.includes('api.realworld')) {
             const authReq = req.clone({
                 setHeaders: {
                     Authorization: token ? `Token ${token}` : ''
                 }
             })
-
             return next.handle(authReq)
         }
         return next.handle(req)

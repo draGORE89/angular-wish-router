@@ -14,6 +14,7 @@ import { LoginModule } from './login/login.module';
 import { RegisterComponent } from './register/register.component';
 import { RegisterModule } from './register/register.module';
 import { AuthInterceptor } from 'src/shared/auth.interceptor';
+import { LoggingInterceptor } from 'src/shared/logging.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,11 @@ import { AuthInterceptor } from 'src/shared/auth.interceptor';
     // ProductsModule,
     // WishModule
   ],
-  // providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }
+  ],
+  // providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
