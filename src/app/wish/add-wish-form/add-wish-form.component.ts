@@ -1,10 +1,11 @@
 // Since this component returns an output aka. new wish item, we need to import Output and EventEmitter
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'add-wish-form',
   templateUrl: './add-wish-form.component.html',
-  styleUrls: ['./add-wish-form.component.css']
+  styleUrls: ['./add-wish-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddWishFormComponent {
   @Output() addWish = new EventEmitter<string>();

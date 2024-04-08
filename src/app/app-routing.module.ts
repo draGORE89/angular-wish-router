@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'wishlist', loadChildren: () => import('./wish/wish.module').then(m => m.WishModule) },
   { path: 'contact/us', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
+  { path: 'articles', loadChildren: () => import('./articles/articles.module').then(m => m.ArticlesModule) },
   { path: '**', loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule) }, // <-- set up the wild card for not found resources
 ];
 

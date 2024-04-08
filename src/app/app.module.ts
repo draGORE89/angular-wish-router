@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterModule } from './register/register.module';
 import { AuthInterceptor } from 'src/shared/auth.interceptor';
 import { LoggingInterceptor } from 'src/shared/logging.interceptor';
+import { ArticlesComponent } from './articles/articles.component';
 
 @NgModule({
   declarations: [

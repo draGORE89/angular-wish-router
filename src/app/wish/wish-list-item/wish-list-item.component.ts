@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 // import events from '../../shared/services/eventService'
 import {EventService} from '../../../shared/services/eventService'
 import { WishItem } from 'src/shared/models/wishItem';
@@ -6,7 +6,8 @@ import { WishItem } from 'src/shared/models/wishItem';
 @Component({
   selector: 'wish-list-item',
   templateUrl: './wish-list-item.component.html',
-  styleUrls: ['./wish-list-item.component.css']
+  styleUrls: ['./wish-list-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 // ! - non-null assertion operator; causes the TypeScript type checker to suspend strict null and undefined checks for a specific property expression.

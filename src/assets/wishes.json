@@ -6,11 +6,6 @@
       "isComplete": true
     },
     {
-      "id": "2",
-      "wishText": "Get Coffee!",
-      "isComplete": true
-    },
-    {
       "id": "3",
       "wishText": "Get Sleep!",
       "isComplete": false

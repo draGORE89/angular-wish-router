@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { WishItem } from 'src/shared/models/wishItem';
 
 @Component({
   selector: 'wish-list',
   templateUrl: './wish-list.component.html',
-  styleUrls: ['./wish-list.component.css']
+  styleUrls: ['./wish-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WishListComponent {
 

@@ -1,4 +1,4 @@
-import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, Input, EventEmitter, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { WishItem } from 'src/shared/models/wishItem';
 
 
@@ -11,7 +11,8 @@ const filters = [
 @Component({
   selector: 'wish-filter',
   templateUrl: './wish-filter.component.html',
-  styleUrls: ['./wish-filter.component.css']
+  styleUrls: ['./wish-filter.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WishFilterComponent implements OnInit {
   // filter is now 2-way bound. To tell angular that Input and Output are related, we add 'Change' in the output name

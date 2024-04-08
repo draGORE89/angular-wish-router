@@ -92,7 +92,8 @@ export class WishComponent implements OnInit, OnDestroy {
   }
 
   private getLastItemId(): number {
-    return this.items.reduce((maxId, currentItem) => Math.max(maxId, Number(currentItem.id)), 0);
+    // type assertion -> instead of converting Number(currentItem.id) we can set it to number, by first setting it to unknown
+    return this.items.reduce((maxId, currentItem) => Math.max(maxId, currentItem.id as unknown as number), 0);
   }
 
   private addWishToService(wish: WishItem): void {
